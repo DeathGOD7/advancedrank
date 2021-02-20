@@ -1,0 +1,5 @@
+name: AdvancedRank
+version: @version@
+main: de.blocki.advancedrank.main.Main
+authors: [ blocki ]
+description: /rank plugin for Minecrfat Java Version 1.8
