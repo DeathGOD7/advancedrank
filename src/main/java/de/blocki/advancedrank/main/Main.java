@@ -24,7 +24,7 @@ public final class Main extends JavaPlugin {
 
         //register rank command
         if(getServer().getPluginManager().getPlugin("LuckPerms").isEnabled()){
-            System.out.println("[AdvancedNTE] Das Plugin LuckPerms wurde gefunden");
+            System.out.println("[AdvancedRank] Das Plugin LuckPerms wurde gefunden");
             LuckPerms api = LuckPermsProvider.get();
             lpApi = api;
             getCommand("rank").setExecutor(new lp_rank(this, api));
