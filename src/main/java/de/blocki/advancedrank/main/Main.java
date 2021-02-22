@@ -10,8 +10,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public final class Main extends JavaPlugin {
 
-    private static String private_prefix;
-    public static String prefix = private_prefix + " ";
+    public static String prefix;
 
     //Sets the Plugin Variable Public
     public static Plugin plugin;
@@ -52,7 +51,7 @@ public final class Main extends JavaPlugin {
     }
 
     private void setDefaultConfig(){
-        if(ConfigManager.get("MessagePrefix") == null){ ConfigManager.set("MessagePrefix", "§7[§6Rank§7] "); }
-        private_prefix = ConfigManager.get("MessagePrefix");
+        if(ConfigManager.get("MessagePrefix") == null){ ConfigManager.set("MessagePrefix", "§7[§6Rank§7]"); }
+        prefix = ConfigManager.get("MessagePrefix") + " ";
     }
 }
