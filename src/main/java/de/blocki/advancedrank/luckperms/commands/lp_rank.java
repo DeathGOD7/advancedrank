@@ -67,10 +67,15 @@ public class lp_rank implements CommandExecutor {
                             user.data().add(node);
 
                             // Tell the sender.
-                            String message = Main.prefix + user.getUsername() + " ist jetzt in der Gruppe " + group.getDisplayName() + "§7.";
+                            String groupnamevar = null;
+                            String displayname = group.getDisplayName();
+                            String name = group.getName();
+                            if(displayname != null){ groupnamevar = displayname; }else { groupnamevar = name; }
+
+                            String message = Main.prefix + user.getUsername() + " ist jetzt in der Gruppe " + groupnamevar + "§7.";
                             sender.sendMessage(message.replace("&", "§"));
                             Player OnlinePlayerReciever = Bukkit.getPlayer(playerName);
-                            String messageToSend = Main.prefix + "Dir wurde der Rang " + group.getDisplayName() + " §7zugewiesen!";
+                            String messageToSend = Main.prefix + "Dir wurde der Rang " + groupnamevar + " §7zugewiesen!";
                             OnlinePlayerReciever.sendMessage(messageToSend.replace("&", "§"));
                         });
 
@@ -112,10 +117,16 @@ public class lp_rank implements CommandExecutor {
                             user.data().remove(node);
 
                             // Tell the sender.
-                            String message = Main.prefix + user.getUsername() + " wurde aus der Gruppe " + group.getDisplayName() + "§7 entfernt.";
+                            String groupnamevar = null;
+                            String displayname = group.getDisplayName();
+                            String name = group.getName();
+                            if(displayname != null){ groupnamevar = displayname; }else { groupnamevar = name; }
+
+
+                            String message = Main.prefix + user.getUsername() + " wurde aus der Gruppe " + groupnamevar + "§7 entfernt.";
                             sender.sendMessage(message.replace("&", "§"));
                             Player OnlinePlayerReciever = Bukkit.getPlayer(playerName);
-                            String messageToSend = Main.prefix + "Dir wurde der Rang " + group.getDisplayName() + " §7entfernt!";
+                            String messageToSend = Main.prefix + "Dir wurde der Rang " + groupnamevar + " §7entfernt!";
                             OnlinePlayerReciever.sendMessage(messageToSend.replace("&", "§"));
 
                         });
@@ -158,10 +169,16 @@ public class lp_rank implements CommandExecutor {
                             user.data().add(node);
 
                             // Tell the sender.
-                            String message = Main.prefix + user.getUsername() + " wurde aus zur Gruppe " + group.getDisplayName() + "§7 hinzugefügt.";
+                            String groupnamevar = null;
+                            String displayname = group.getDisplayName();
+                            String name = group.getName();
+                            if(displayname != null){ groupnamevar = displayname; }else { groupnamevar = name; }
+
+
+                            String message = Main.prefix + user.getUsername() + " wurde aus zur Gruppe " + groupnamevar + "§7 hinzugefügt.";
                             sender.sendMessage(message.replace("&", "§"));
                             Player OnlinePlayerReciever = Bukkit.getPlayer(playerName);
-                            String messageSend = Main.prefix + "Dir wurde der Rang " + group.getDisplayName() + " §7hinzugefügt!";
+                            String messageSend = Main.prefix + "Dir wurde der Rang " + groupnamevar + " §7hinzugefügt!";
                             OnlinePlayerReciever.sendMessage(messageSend.replace("&", "§"));
                         });
                 }
