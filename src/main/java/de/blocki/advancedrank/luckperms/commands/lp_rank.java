@@ -67,7 +67,7 @@ public class lp_rank implements CommandExecutor {
                             user.data().add(node);
 
                             // Tell the sender.
-                            String groupnamevar = null;
+                            String groupnamevar;
                             String displayname = group.getDisplayName();
                             String name = group.getName();
                             if(displayname != null){ groupnamevar = displayname; }else { groupnamevar = name; }
@@ -117,7 +117,7 @@ public class lp_rank implements CommandExecutor {
                             user.data().remove(node);
 
                             // Tell the sender.
-                            String groupnamevar = null;
+                            String groupnamevar;
                             String displayname = group.getDisplayName();
                             String name = group.getName();
                             if(displayname != null){ groupnamevar = displayname; }else { groupnamevar = name; }
@@ -169,7 +169,7 @@ public class lp_rank implements CommandExecutor {
                             user.data().add(node);
 
                             // Tell the sender.
-                            String groupnamevar = null;
+                            String groupnamevar;
                             String displayname = group.getDisplayName();
                             String name = group.getName();
                             if(displayname != null){ groupnamevar = displayname; }else { groupnamevar = name; }
