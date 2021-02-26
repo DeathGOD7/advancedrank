@@ -70,7 +70,11 @@ public class lp_rank implements CommandExecutor {
                             String groupnamevar;
                             String displayname = group.getDisplayName();
                             String name = group.getName();
-                            if(displayname != null){ groupnamevar = displayname; }else { groupnamevar = name; }
+                            if (displayname != null) {
+                                groupnamevar = displayname;
+                            } else {
+                                groupnamevar = name;
+                            }
 
                             String message = Main.prefix + user.getUsername() + " ist jetzt in der Gruppe " + groupnamevar + "§7.";
                             sender.sendMessage(message.replace("&", "§"));
@@ -113,21 +117,25 @@ public class lp_rank implements CommandExecutor {
                             // Create a node to add to the player.
                             Node node = InheritanceNode.builder(group).build();
 
-                            // Add the node to the user.
-                            user.data().remove(node);
+                            if(!(this.luckPerms.getUserManager().getUser(player.getUniqueId()).getNodes().contains(node))){
+                                sender.sendMessage(Main.prefix + " Der Spieler " + player.getName() + " hat die Gruppe " + group.getName() + " nicht.");
+                            }else {
+                                // Add the node to the user.
+                                user.data().remove(node);
 
-                            // Tell the sender.
-                            String groupnamevar;
-                            String displayname = group.getDisplayName();
-                            String name = group.getName();
-                            if(displayname != null){ groupnamevar = displayname; }else { groupnamevar = name; }
+                                // Tell the sender.
+                                String groupnamevar;
+                                String displayname = group.getDisplayName();
+                                String name = group.getName();
+                                if(displayname != null){ groupnamevar = displayname; }else { groupnamevar = name; }
 
 
-                            String message = Main.prefix + user.getUsername() + " wurde aus der Gruppe " + groupnamevar + "§7 entfernt.";
-                            sender.sendMessage(message.replace("&", "§"));
-                            Player OnlinePlayerReciever = Bukkit.getPlayer(playerName);
-                            String messageToSend = Main.prefix + "Dir wurde der Rang " + groupnamevar + " §7entfernt!";
-                            OnlinePlayerReciever.sendMessage(messageToSend.replace("&", "§"));
+                                String message = Main.prefix + user.getUsername() + " wurde aus der Gruppe " + groupnamevar + "§7 entfernt.";
+                                sender.sendMessage(message.replace("&", "§"));
+                                Player OnlinePlayerReciever = Bukkit.getPlayer(playerName);
+                                String messageToSend = Main.prefix + "Dir wurde der Rang " + groupnamevar + " §7entfernt!";
+                                OnlinePlayerReciever.sendMessage(messageToSend.replace("&", "§"));
+                            }
 
                         });
 
@@ -165,21 +173,26 @@ public class lp_rank implements CommandExecutor {
                             // Create a node to add to the player.
                             Node node = InheritanceNode.builder(group).build();
 
-                            // Add the node to the user.
-                            user.data().add(node);
+                            if(this.luckPerms.getUserManager().getUser(player.getUniqueId()).getNodes().contains(node)){
+                                sender.sendMessage(Main.prefix + " Der Spieler " + player.getName() + " hat die Gruppe " + group.getName() + " bereits.");
+                            }else {
+                                // Add the node to the user.
+                                user.data().add(node);
 
-                            // Tell the sender.
-                            String groupnamevar;
-                            String displayname = group.getDisplayName();
-                            String name = group.getName();
-                            if(displayname != null){ groupnamevar = displayname; }else { groupnamevar = name; }
+                                // Tell the sender.
+                                String groupnamevar;
+                                String displayname = group.getDisplayName();
+                                String name = group.getName();
+                                if(displayname != null){ groupnamevar = displayname; }else { groupnamevar = name; }
 
 
-                            String message = Main.prefix + user.getUsername() + " wurde aus zur Gruppe " + groupnamevar + "§7 hinzugefügt.";
-                            sender.sendMessage(message.replace("&", "§"));
-                            Player OnlinePlayerReciever = Bukkit.getPlayer(playerName);
-                            String messageSend = Main.prefix + "Dir wurde der Rang " + groupnamevar + " §7hinzugefügt!";
-                            OnlinePlayerReciever.sendMessage(messageSend.replace("&", "§"));
+                                String message = Main.prefix + user.getUsername() + " wurde aus zur Gruppe " + groupnamevar + "§7 hinzugefügt.";
+                                sender.sendMessage(message.replace("&", "§"));
+                                Player OnlinePlayerReciever = Bukkit.getPlayer(playerName);
+                                String messageSend = Main.prefix + "Dir wurde der Rang " + groupnamevar + " §7hinzugefügt!";
+                                OnlinePlayerReciever.sendMessage(messageSend.replace("&", "§"));
+                            }
+
                         });
                 }
             }else {
