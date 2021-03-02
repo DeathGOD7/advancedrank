@@ -3,6 +3,7 @@ version: @version@
 main: de.blocki.advancedrank.main.Main
 authors: [ blocki ]
 description: /rank plugin for Minecrfat Java Version 1.8
+api-version: 1.16
 commands:
   rank:
     description: List all commands

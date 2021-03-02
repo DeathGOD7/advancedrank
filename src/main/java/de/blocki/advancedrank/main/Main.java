@@ -3,10 +3,17 @@ package de.blocki.advancedrank.main;
 import de.blocki.advancedrank.luckperms.commands.lp_rank;
 import de.blocki.advancedrank.luckperms.commands.lp_rankCommandsTabComplete;
 import de.blocki.advancedrank.main.utils.ConfigManager;
+import de.blocki.advancedrank.vault.commands.vault_rank;
+import de.blocki.advancedrank.vault.commands.vault_rankCommandsTabComplete;
 import net.luckperms.api.LuckPerms;
 import net.luckperms.api.LuckPermsProvider;
+import net.milkbowl.vault.chat.Chat;
+import net.milkbowl.vault.permission.Permission;
 import org.bukkit.plugin.Plugin;
+import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
+
+import java.util.logging.Level;
 
 public final class Main extends JavaPlugin {
 
@@ -17,17 +24,37 @@ public final class Main extends JavaPlugin {
     //Sets the Plugin Variable Public
     public static LuckPerms lpApi;
 
+    public static boolean isLuckPerms;
+    public static boolean isVault;
+
+    private static Permission perms = null;
+    private static Chat chat = null;
+
     @Override
     public void onEnable() {
         plugin = this;
 
         //register rank command
-        if(getServer().getPluginManager().getPlugin("LuckPerms").isEnabled()){
-            System.out.println("[AdvancedRank] Das Plugin LuckPerms wurde gefunden");
-            LuckPerms api = LuckPermsProvider.get();
-            lpApi = api;
-            getCommand("rank").setExecutor(new lp_rank(this, api));
-            getCommand("rank").setTabCompleter(new lp_rankCommandsTabComplete());
+        try {
+            if (getServer().getPluginManager().getPlugin("LuckPerms").isEnabled()) {
+                System.out.println("[AdvancedRank] Found the Plugin LuckPerms");
+                LuckPerms api = LuckPermsProvider.get();
+                lpApi = api;
+                getCommand("rank").setExecutor(new lp_rank(this, api));
+                getCommand("rank").setTabCompleter(new lp_rankCommandsTabComplete());
+                isLuckPerms = true;
+            }
+            if (getServer().getPluginManager().getPlugin("Vault").isEnabled()) {
+                System.out.println("[AdvancedRank] Found the Plugin Vault");
+                getCommand("rank").setExecutor(new vault_rank());
+                getCommand("rank").setTabCompleter(new vault_rankCommandsTabComplete());
+                setupChat();
+                setupPermissions();
+                isVault = true;
+            }
+        }catch (NullPointerException ignored){
+            getLogger().log(Level.WARNING, "[AdvancedNTE] No supported permission Plugin (LuckPerms, Vault) could be found. Deactivate...");
+            getServer().getPluginManager().disablePlugin(this);
         }
 
         //sout the text
@@ -38,20 +65,36 @@ public final class Main extends JavaPlugin {
         System.out.println("  / ____ \\ (_| |\\ V / (_| | | | | (_|  __/ (_| | | \\ \\ (_| | | | |   < \n");
         System.out.println(" /_/    \\_\\__,_| \\_/ \\__,_|_| |_|\\___\\___|\\__,_|_|  \\_\\__,_|_| |_|_|\\_\\\n");
         System.out.println("");
-        System.out.println("AdvancedRank by blocki");
+        System.out.println("by blocki");
         System.out.println("");
 
 
         setDefaultConfig();
     }
 
-    @Override
-    public void onDisable() {
-        // Plugin shutdown logic
-    }
-
     private void setDefaultConfig(){
         if(ConfigManager.get("MessagePrefix") == null){ ConfigManager.set("MessagePrefix", "§7[§6Rank§7]"); }
         prefix = ConfigManager.get("MessagePrefix") + " ";
     }
+
+    private boolean setupChat() {
+        RegisteredServiceProvider<Chat> rsp = getServer().getServicesManager().getRegistration(Chat.class);
+        chat = rsp.getProvider();
+        return chat != null;
+    }
+
+    private boolean setupPermissions() {
+        RegisteredServiceProvider<Permission> rsp = getServer().getServicesManager().getRegistration(Permission.class);
+        perms = rsp.getProvider();
+        return perms != null;
+    }
+
+    public static Permission getPermissions() {
+        return perms;
+    }
+
+    public static Chat getChat() {
+        return chat;
+    }
+
 }
