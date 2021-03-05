@@ -8,7 +8,7 @@ LuckPermsRANK is a /rank Plugin for Minecraft Java Version 1.8
   - /rank remove <player> <rank (it's autocomplete)> -> Removes an rank from a Player.
   - /rank add <player> <rank (it's autocomplete)> -> Adds an rank to a Player.
 
-Its powered by the LuckPerms API v5.2 and Spigot API v1.8.8
+Its powered by the LuckPerms API v5.2 or the VaultAPI and Spigot API v1.8.8
 
 
 ### Installation
@@ -21,7 +21,7 @@ Restart or Reload the Server an you are done!
 
 ### Todos
 
- - add a check if the User already has the rank
+ - 
 
 
 License
