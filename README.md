@@ -1,5 +1,5 @@
-# LuckPermsRANK
-LuckPermsRANK is a /rank Plugin for Minecraft Java Version 1.8
+# AdvancedRANK
+AdvancedRANK is a /rank Plugin for Minecraft Java Version 1.8
 
 # Features
 
@@ -13,15 +13,15 @@ Its powered by the LuckPerms API v5.2 or the VaultAPI and Spigot API v1.8.8
 
 ### Installation
 
-LuckPermsNTE requires [LuckPerms](https://luckperms.net) & [Spigot](https://www.spigotmc.org/)  with a Minecraft Server to run otherwise it won't work.
+AdvancedRANK requires [LuckPerms](https://luckperms.net) or [Vault](https://www.spigotmc.org/resources/vault.34315/) & [Spigot](https://www.spigotmc.org/)  with a Minecraft Server to run otherwise it won't work.
 
-Download the Latest Version of the Plugin [here]() and put it into your Plugins folder in your Minecraft Server.
+Download the Latest Version of the Plugin [here](https://github.com/blockiyt/advancedrank/releases) and put it into your Plugins folder in your Minecraft Server.
 
 Restart or Reload the Server an you are done!
 
 ### Todos
 
- - 
+ - nothing
 
 
 License
