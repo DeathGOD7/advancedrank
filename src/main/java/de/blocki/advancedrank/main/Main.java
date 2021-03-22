@@ -1,7 +1,8 @@
 package de.blocki.advancedrank.main;
 
-import de.blocki.advancedrank.luckperms.commands.lp_rank;
-import de.blocki.advancedrank.luckperms.commands.lp_rankCommandsTabComplete;
+import de.blocki.advancedrank.luckperms.commands.LP_rank;
+import de.blocki.advancedrank.luckperms.commands.LP_rankCommandsTabComplete;
+import de.blocki.advancedrank.luckperms.listener.GroupAddRemove;
 import de.blocki.advancedrank.main.utils.ConfigManager;
 import de.blocki.advancedrank.vault.commands.vault_rank;
 import de.blocki.advancedrank.vault.commands.vault_rankCommandsTabComplete;
@@ -40,21 +41,25 @@ public final class Main extends JavaPlugin {
                 System.out.println("[AdvancedRank] Found the Plugin LuckPerms");
                 LuckPerms api = LuckPermsProvider.get();
                 lpApi = api;
-                getCommand("rank").setExecutor(new lp_rank(this, api));
-                getCommand("rank").setTabCompleter(new lp_rankCommandsTabComplete());
+                getCommand("rank").setExecutor(new LP_rank(this, api));
+                getCommand("rank").setTabCompleter(new LP_rankCommandsTabComplete());
+                new GroupAddRemove(this, api).register();
                 isLuckPerms = true;
             }
-            if (getServer().getPluginManager().getPlugin("Vault").isEnabled()) {
-                System.out.println("[AdvancedRank] Found the Plugin Vault");
-                getCommand("rank").setExecutor(new vault_rank());
-                getCommand("rank").setTabCompleter(new vault_rankCommandsTabComplete());
-                setupChat();
-                setupPermissions();
-                isVault = true;
-            }
         }catch (NullPointerException ignored){
-            getLogger().log(Level.WARNING, "[AdvancedNTE] No supported permission Plugin (LuckPerms, Vault) could be found. Deactivate...");
-            getServer().getPluginManager().disablePlugin(this);
+            try {
+                if (getServer().getPluginManager().getPlugin("Vault").isEnabled()) {
+                    System.out.println("[AdvancedRank] Found the Plugin Vault");
+                    getCommand("rank").setExecutor(new vault_rank());
+                    getCommand("rank").setTabCompleter(new vault_rankCommandsTabComplete());
+                    setupChat();
+                    setupPermissions();
+                    isVault = true;
+                }
+            }catch (NullPointerException ignored2){
+                getLogger().log(Level.WARNING, "No supported permission Plugin (Vault) could be found. Deactivate...");
+                getServer().getPluginManager().disablePlugin(this);
+            }
         }
 
         //sout the text

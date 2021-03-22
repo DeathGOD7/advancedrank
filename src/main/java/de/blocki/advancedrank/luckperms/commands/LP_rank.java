@@ -14,11 +14,11 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-public class lp_rank implements CommandExecutor {
+public class LP_rank implements CommandExecutor {
     private final Main plugin;
     private final LuckPerms luckPerms;
 
-    public lp_rank(Main plugin, LuckPerms luckPerms) {
+    public LP_rank(Main plugin, LuckPerms luckPerms) {
         this.plugin = plugin;
         this.luckPerms = luckPerms;
     }
@@ -118,7 +118,7 @@ public class lp_rank implements CommandExecutor {
                             Node node = InheritanceNode.builder(group).build();
 
                             if(!(this.luckPerms.getUserManager().getUser(player.getUniqueId()).getNodes().contains(node))){
-                                sender.sendMessage(Main.prefix + " Der Spieler " + player.getName() + " hat die Gruppe " + group.getName() + " nicht.");
+                                sender.sendMessage(Main.prefix + "Der Spieler " + player.getName() + " hat die Gruppe " + group.getName() + " nicht.");
                             }else {
                                 // Add the node to the user.
                                 user.data().remove(node);
@@ -174,7 +174,7 @@ public class lp_rank implements CommandExecutor {
                             Node node = InheritanceNode.builder(group).build();
 
                             if(this.luckPerms.getUserManager().getUser(player.getUniqueId()).getNodes().contains(node)){
-                                sender.sendMessage(Main.prefix + " Der Spieler " + player.getName() + " hat die Gruppe " + group.getName() + " bereits.");
+                                sender.sendMessage(Main.prefix + "Der Spieler " + player.getName() + " hat die Gruppe " + group.getName() + " bereits.");
                             }else {
                                 // Add the node to the user.
                                 user.data().add(node);

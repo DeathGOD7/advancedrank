@@ -1,19 +1,23 @@
 package de.blocki.advancedrank.luckperms.commands;
 
 import de.blocki.advancedrank.main.Main;
+import net.luckperms.api.LuckPerms;
+import net.luckperms.api.LuckPermsProvider;
+import net.luckperms.api.event.LuckPermsEvent;
 import net.luckperms.api.model.group.Group;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
+import org.bukkit.event.Listener;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-public class lp_rankCommandsTabComplete implements TabCompleter {
+public class LP_rankCommandsTabComplete implements TabCompleter {
 
     List<String> mainCMD = new ArrayList<String>();
-    List<String> groupsArg = new ArrayList<String>();
+    public static List<String> groupsArg = new ArrayList<String>();
 
     Set<Group> groups = Main.lpApi.getGroupManager().getLoadedGroups();
     public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
