@@ -27,7 +27,7 @@ Restart or Reload the Server an you are done!
  - config support for messages
  - time left for rank in info command
  - add single permissions
-
+ - add bungeecord support
 
 License
 ----
