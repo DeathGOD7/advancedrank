@@ -21,7 +21,7 @@ Restart or Reload the Server an you are done!
 
 ### Todos
 
- - nothing
+ - config support for messages
 
 
 License
