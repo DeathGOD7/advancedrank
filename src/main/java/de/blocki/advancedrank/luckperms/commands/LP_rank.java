@@ -7,12 +7,17 @@ import net.luckperms.api.model.user.User;
 import net.luckperms.api.node.Node;
 import net.luckperms.api.node.NodeType;
 import net.luckperms.api.node.types.InheritanceNode;
+import net.luckperms.api.platform.PlayerAdapter;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+
+import java.util.Collection;
+import java.util.stream.Collectors;
 
 public class LP_rank implements CommandExecutor {
     private final Main plugin;
@@ -194,12 +199,54 @@ public class LP_rank implements CommandExecutor {
                             }
 
                         });
+                }else if(args[0].equalsIgnoreCase("info")){
+
+                    String pname = args[1];
+                    Player player = Bukkit.getPlayer(pname);
+
+                    if(player != null) {
+                        // Get a Bukkit player adapter.
+                        PlayerAdapter<Player> playerAdapter = this.luckPerms.getPlayerAdapter(Player.class);
+
+                        // Get a LuckPerms user for the player.
+                        User user = playerAdapter.getUser(player);
+
+                        // Get all of the groups they inherit from on the current server.
+                        Collection<Group> groups = user.getInheritedGroups(playerAdapter.getQueryOptions(player));
+
+                        // Convert to a comma separated string (e.g. "admin, mod, default")
+                        String groupsString = groups.stream().map(Group::getDisplayName).collect(Collectors.joining("§r§7, ")).replace("&", "§");
+
+                        // Tell the sender.
+                        sender.sendMessage(Main.prefix + "Der Spieler " + player.getName() +" hat die Ränge " +  groupsString+".");
+                        return true;
+                    }
+                }else if(args[0].equalsIgnoreCase("help")) {
+                    pSender.sendMessage(Main.prefix + "Befehle:");
+                    pSender.sendMessage(Main.prefix + "/rank set <Spieler> <Group> | Setzt dem Spieler die Gruppe.");
+                    pSender.sendMessage(Main.prefix + "/rank remove <Spieler> <Group> | Entfernt dem Spieler die Gruppe.");
+                    pSender.sendMessage(Main.prefix + "/rank add <Spieler> <Group> | Fügt eine Gruppe zum Spieler hinzu.");
+                    pSender.sendMessage(Main.prefix + "/rank (info <Spieler>) | Zeigt den Rang des Spielers oder dir an.");
+
                 }
             }else {
-                pSender.sendMessage(Main.prefix + "Befehle:");
-                pSender.sendMessage(Main.prefix + "/rank set <Spieler> <Group> | Setzt dem Spieler die Gruppe.");
-                pSender.sendMessage(Main.prefix + "/rank remove <Spieler> <Group> | Entfernt dem Spieler die Gruppe.");
-                pSender.sendMessage(Main.prefix + "/rank add <Spieler> <Group> | Fügt eine Gruppe zum Spieler hinzu.");
+
+                // Get a Bukkit player adapter.
+                PlayerAdapter<Player> playerAdapter = this.luckPerms.getPlayerAdapter(Player.class);
+
+                // Get a LuckPerms user for the player.
+                User user = playerAdapter.getUser(pSender);
+
+                // Get all of the groups they inherit from on the current server.
+                Collection<Group> groups = user.getInheritedGroups(playerAdapter.getQueryOptions(pSender));
+
+                // Convert to a comma separated string (e.g. "admin, mod, default")
+                String groupsString = groups.stream().map(Group::getDisplayName).collect(Collectors.joining("§r§7, ")).replace("&", "§");
+
+                // Tell the sender.
+                sender.sendMessage(Main.prefix + "Du hast die Ränge: " + groupsString + ".");
+                return true;
+
             }
         return true;
     }

@@ -26,6 +26,7 @@ public class LP_rankCommandsTabComplete implements TabCompleter {
             mainCMD.add("add");
             mainCMD.add("remove");
             mainCMD.add("set");
+            mainCMD.add("info");
         }
 
         if(groupsArg.isEmpty()){
