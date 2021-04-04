@@ -17,6 +17,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import java.util.Collection;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class LP_rank implements CommandExecutor {
@@ -39,10 +40,11 @@ public class LP_rank implements CommandExecutor {
                         }
 
                         String playerName = args[1];
+                        Player playerPlayer = Bukkit.getPlayer(playerName);
                         String groupName = args[2];
 
                         // Get an OfflinePlayer object for the player
-                        OfflinePlayer player = this.plugin.getServer().getOfflinePlayer(playerName);
+                        OfflinePlayer player = this.plugin.getServer().getOfflinePlayer(playerPlayer.getUniqueId());
 
                         // Player not known?
                         if (player == null || !player.hasPlayedBefore()) {
@@ -96,10 +98,11 @@ public class LP_rank implements CommandExecutor {
                         }
 
                         String playerName = args[1];
+                        Player playerPlayer = Bukkit.getPlayer(playerName);
                         String groupName = args[2];
 
                         // Get an OfflinePlayer object for the player
-                        OfflinePlayer player = this.plugin.getServer().getOfflinePlayer(playerName);
+                        OfflinePlayer player = this.plugin.getServer().getOfflinePlayer(playerPlayer.getUniqueId());
 
                         // Player not known?
                         if (player == null || !player.hasPlayedBefore()) {
@@ -152,10 +155,11 @@ public class LP_rank implements CommandExecutor {
                         }
 
                         String playerName = args[1];
+                        Player playerPlayer = Bukkit.getPlayer(playerName);
                         String groupName = args[2];
 
                         // Get an OfflinePlayer object for the player
-                        OfflinePlayer player = this.plugin.getServer().getOfflinePlayer(playerName);
+                        OfflinePlayer player = this.plugin.getServer().getOfflinePlayer(playerPlayer.getUniqueId());
 
                         // Player not known?
                         if (player == null || !player.hasPlayedBefore()) {
@@ -214,23 +218,27 @@ public class LP_rank implements CommandExecutor {
                         // Get all of the groups they inherit from on the current server.
                         Collection<Group> groups = user.getInheritedGroups(playerAdapter.getQueryOptions(player));
 
-                        // Convert to a comma separated string (e.g. "admin, mod, default")
-                        String groupsString = groups.stream().map(Group::getDisplayName).collect(Collectors.joining("§r§7, ")).replace("&", "§");
-
-                        // Tell the sender.
-                        sender.sendMessage(Main.prefix + "Der Spieler " + player.getName() +" hat die Ränge " +  groupsString+".");
-                        return true;
+                        String groupsString = groups.stream().map(g -> Objects.isNull(g.getDisplayName()) ? g.getName() : g.getDisplayName()).collect(Collectors.joining("§r§7, ")).replace("&", "§");
+                        if(groups.size() == 0) {
+                            sender.sendMessage(Main.prefix + "Der Spieler " + player.getName() +" hat keinen Rang!");
+                        }else {
+                            if(groups.size() >= 1){
+                                sender.sendMessage(Main.prefix + "Der Spieler " + player.getName() +" hat den Rang: " + groupsString + "§7.");
+                            } else {
+                                sender.sendMessage(Main.prefix + "Der Spieler " + player.getName() +" hat die Ränge: " + groupsString + "§7.");
+                            }
+                        }
                     }
                 }else if(args[0].equalsIgnoreCase("help")) {
                     pSender.sendMessage(Main.prefix + "Befehle:");
                     pSender.sendMessage(Main.prefix + "/rank set <Spieler> <Group> | Setzt dem Spieler die Gruppe.");
                     pSender.sendMessage(Main.prefix + "/rank remove <Spieler> <Group> | Entfernt dem Spieler die Gruppe.");
                     pSender.sendMessage(Main.prefix + "/rank add <Spieler> <Group> | Fügt eine Gruppe zum Spieler hinzu.");
-                    pSender.sendMessage(Main.prefix + "/rank (info <Spieler>) | Zeigt den Rang des Spielers oder dir an.");
+                    pSender.sendMessage(Main.prefix + "/rank (info <Spieler>) | Zeigt den Rang des Spielers an.");
+                    pSender.sendMessage(Main.prefix + "/rank | Zeigt den Rang von dir an.");
 
                 }
             }else {
-
                 // Get a Bukkit player adapter.
                 PlayerAdapter<Player> playerAdapter = this.luckPerms.getPlayerAdapter(Player.class);
 
@@ -241,12 +249,17 @@ public class LP_rank implements CommandExecutor {
                 Collection<Group> groups = user.getInheritedGroups(playerAdapter.getQueryOptions(pSender));
 
                 // Convert to a comma separated string (e.g. "admin, mod, default")
-                String groupsString = groups.stream().map(Group::getDisplayName).collect(Collectors.joining("§r§7, ")).replace("&", "§");
+                String groupsString = groups.stream().map(g -> Objects.isNull(g.getDisplayName()) ? g.getName() : g.getDisplayName()).collect(Collectors.joining("§r§7, ")).replace("&", "§");
 
-                // Tell the sender.
-                sender.sendMessage(Main.prefix + "Du hast die Ränge: " + groupsString + ".");
-                return true;
-
+                if (groups.size() == 0) {
+                    sender.sendMessage(Main.prefix + "Du hast keinen Rang!");
+                } else {
+                    if (groups.size() >= 1) {
+                        sender.sendMessage(Main.prefix + "Du hast den Rang: " + groupsString + "§7.");
+                    } else {
+                        sender.sendMessage(Main.prefix + "Du hast die Ränge: " + groupsString + "§7.");
+                    }
+                }
             }
         return true;
     }

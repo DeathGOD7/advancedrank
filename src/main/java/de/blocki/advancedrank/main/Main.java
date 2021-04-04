@@ -78,8 +78,8 @@ public final class Main extends JavaPlugin {
     }
 
     private void setDefaultConfig(){
-        if(ConfigManager.get("MessagePrefix") == null){ ConfigManager.set("MessagePrefix", "§7[§6Rank§7]"); }
-        prefix = ConfigManager.get("MessagePrefix") + " ";
+        ConfigManager.setDef("Message.Prefix", "§7[§6Rank§7]");
+        prefix = ConfigManager.getString("Message.Prefix") + " ";
     }
 
     private boolean setupChat() {
