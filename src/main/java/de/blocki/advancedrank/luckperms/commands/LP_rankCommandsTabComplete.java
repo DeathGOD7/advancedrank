@@ -37,6 +37,7 @@ public class LP_rankCommandsTabComplete implements TabCompleter {
             result.add("remove");
             result.add("set");
             result.add("info");
+            result.add("help");
         }
         if(args.length == 2){
             for (Player p : Bukkit.getOnlinePlayers()){
