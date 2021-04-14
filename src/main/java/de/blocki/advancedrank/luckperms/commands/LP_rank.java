@@ -40,15 +40,14 @@ public class LP_rank implements CommandExecutor {
                         }
 
                         String playerName = args[1];
-                        Player playerPlayer = Bukkit.getPlayer(playerName);
                         String groupName = args[2];
 
-                        // Get an OfflinePlayer object for the player
-                        OfflinePlayer player = this.plugin.getServer().getOfflinePlayer(playerPlayer.getUniqueId());
+                        // Get an Player object for the player
+                        Player player = this.plugin.getServer().getPlayer(playerName);
 
                         // Player not known?
-                        if (player == null || !player.hasPlayedBefore()) {
-                            sender.sendMessage(Main.prefix + playerName + " hat den Server noch nie betreten.");
+                        if (player == null) {
+                            sender.sendMessage(Main.prefix + playerName + " wurde nicht gefunden.");
                             return true;
                         }
 
@@ -98,15 +97,14 @@ public class LP_rank implements CommandExecutor {
                         }
 
                         String playerName = args[1];
-                        Player playerPlayer = Bukkit.getPlayer(playerName);
                         String groupName = args[2];
 
-                        // Get an OfflinePlayer object for the player
-                        OfflinePlayer player = this.plugin.getServer().getOfflinePlayer(playerPlayer.getUniqueId());
+                        // Get an Player object for the player
+                        Player player = this.plugin.getServer().getPlayer(playerName);
 
                         // Player not known?
-                        if (player == null || !player.hasPlayedBefore()) {
-                            sender.sendMessage(Main.prefix + playerName + " hat den Server noch nie betreten.");
+                        if (player == null) {
+                            sender.sendMessage(Main.prefix + playerName + " wurde nicht gefunden.");
                             return true;
                         }
 
@@ -155,15 +153,14 @@ public class LP_rank implements CommandExecutor {
                         }
 
                         String playerName = args[1];
-                        Player playerPlayer = Bukkit.getPlayer(playerName);
                         String groupName = args[2];
 
-                        // Get an OfflinePlayer object for the player
-                        OfflinePlayer player = this.plugin.getServer().getOfflinePlayer(playerPlayer.getUniqueId());
+                        // Get an Player object for the player
+                        Player player = this.plugin.getServer().getPlayer(playerName);
 
                         // Player not known?
-                        if (player == null || !player.hasPlayedBefore()) {
-                            sender.sendMessage(Main.prefix + playerName + " hat den Server noch nie betreten.");
+                        if (player == null) {
+                            sender.sendMessage(Main.prefix + playerName + " wurde nicht gefunden.");
                             return true;
                         }
 

@@ -36,28 +36,25 @@ public final class Main extends JavaPlugin {
         plugin = this;
 
         //register rank command
-        try {
-            if (getServer().getPluginManager().getPlugin("LuckPerms").isEnabled()) {
-                System.out.println("[AdvancedRank] Found the Plugin LuckPerms");
-                LuckPerms api = LuckPermsProvider.get();
-                lpApi = api;
-                getCommand("rank").setExecutor(new LP_rank(this, api));
-                getCommand("rank").setTabCompleter(new LP_rankCommandsTabComplete());
-                new GroupAddRemove(this, api).register();
-                isLuckPerms = true;
-            }
-        }catch (NullPointerException ignored){
-            try {
-                if (getServer().getPluginManager().getPlugin("Vault").isEnabled()) {
-                    System.out.println("[AdvancedRank] Found the Plugin Vault");
-                    getCommand("rank").setExecutor(new vault_rank());
-                    getCommand("rank").setTabCompleter(new vault_rankCommandsTabComplete());
-                    setupChat();
-                    setupPermissions();
-                    isVault = true;
-                }
-            }catch (NullPointerException ignored2){
-                getLogger().log(Level.WARNING, "No supported permission Plugin (Vault) could be found. Deactivate...");
+
+        if (getServer().getPluginManager().getPlugin("LuckPerms") != null) {
+            System.out.println("[AdvancedRank] Found the Plugin LuckPerms");
+            LuckPerms api = LuckPermsProvider.get();
+            lpApi = api;
+            getCommand("rank").setExecutor(new LP_rank(this, api));
+            getCommand("rank").setTabCompleter(new LP_rankCommandsTabComplete());
+            new GroupAddRemove(this, api).register();
+            isLuckPerms = true;
+        }else {
+            if (getServer().getPluginManager().getPlugin("Vault") != null) {
+                System.out.println("[AdvancedRank] Found the Plugin Vault");
+                getCommand("rank").setExecutor(new vault_rank());
+                getCommand("rank").setTabCompleter(new vault_rankCommandsTabComplete());
+                setupChat();
+                setupPermissions();
+                isVault = true;
+            }else {
+                getLogger().log(Level.WARNING, "No supported permission Plugin (Vault, LuckPerms) could be found. Self destructing...");
                 getServer().getPluginManager().disablePlugin(this);
             }
         }
