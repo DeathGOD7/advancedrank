@@ -1,62 +1,32 @@
 package de.blocki.advancedrank.main;
 
-import de.blocki.advancedrank.luckperms.commands.LP_rank;
-import de.blocki.advancedrank.luckperms.commands.LP_rankCommandsTabComplete;
-import de.blocki.advancedrank.luckperms.listener.GroupAddRemove;
+import de.blocki.advancedrank.luckperms.commands.RankCommand;
 import de.blocki.advancedrank.main.utils.ConfigManager;
-import de.blocki.advancedrank.vault.commands.vault_rank;
-import de.blocki.advancedrank.vault.commands.vault_rankCommandsTabComplete;
 import net.luckperms.api.LuckPerms;
 import net.luckperms.api.LuckPermsProvider;
-import net.milkbowl.vault.chat.Chat;
-import net.milkbowl.vault.permission.Permission;
 import org.bukkit.plugin.Plugin;
-import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
-
-import java.util.logging.Level;
 
 public final class Main extends JavaPlugin {
 
     public static String prefix;
-
-    //Sets the Plugin Variable Public
     public static Plugin plugin;
-    //Sets the Plugin Variable Public
     public static LuckPerms lpApi;
-
     public static boolean isLuckPerms;
-    public static boolean isVault;
-
-    private static Permission perms = null;
-    private static Chat chat = null;
 
     @Override
     public void onEnable() {
         plugin = this;
-
-        //register rank command
+        setDefaultConfig();
 
         if (getServer().getPluginManager().getPlugin("LuckPerms") != null) {
-            System.out.println("[AdvancedRank] Found the Plugin LuckPerms");
+            System.out.println("[AdvancedRank] Found the plugin LuckPerms");
+            isLuckPerms = true;
             LuckPerms api = LuckPermsProvider.get();
             lpApi = api;
-            getCommand("rank").setExecutor(new LP_rank(this, api));
-            getCommand("rank").setTabCompleter(new LP_rankCommandsTabComplete());
-            new GroupAddRemove(this, api).register();
-            isLuckPerms = true;
-        }else {
-            if (getServer().getPluginManager().getPlugin("Vault") != null) {
-                System.out.println("[AdvancedRank] Found the Plugin Vault");
-                getCommand("rank").setExecutor(new vault_rank());
-                getCommand("rank").setTabCompleter(new vault_rankCommandsTabComplete());
-                setupChat();
-                setupPermissions();
-                isVault = true;
-            }else {
-                getLogger().log(Level.WARNING, "No supported permission Plugin (Vault, LuckPerms) could be found. Self destructing...");
-                getServer().getPluginManager().disablePlugin(this);
-            }
+            RankCommand cmd = new RankCommand(this, api);
+            getCommand("rank").setExecutor(cmd);
+            getCommand("rank").setTabCompleter(cmd);
         }
 
         //sout the text
@@ -70,33 +40,11 @@ public final class Main extends JavaPlugin {
         System.out.println("by blocki");
         System.out.println("");
 
-
-        setDefaultConfig();
     }
 
     private void setDefaultConfig(){
         ConfigManager.setDef("Message.Prefix", "§7[§6Rank§7]");
         prefix = ConfigManager.getString("Message.Prefix") + " ";
-    }
-
-    private boolean setupChat() {
-        RegisteredServiceProvider<Chat> rsp = getServer().getServicesManager().getRegistration(Chat.class);
-        chat = rsp.getProvider();
-        return chat != null;
-    }
-
-    private boolean setupPermissions() {
-        RegisteredServiceProvider<Permission> rsp = getServer().getServicesManager().getRegistration(Permission.class);
-        perms = rsp.getProvider();
-        return perms != null;
-    }
-
-    public static Permission getPermissions() {
-        return perms;
-    }
-
-    public static Chat getChat() {
-        return chat;
     }
 
 }

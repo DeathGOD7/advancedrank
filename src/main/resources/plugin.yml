@@ -2,11 +2,12 @@ name: AdvancedRank
 version: @version@
 main: de.blocki.advancedrank.main.Main
 authors: [ blocki ]
-description: /rank plugin for Minecrfat Java Version 1.8
+description: /rank plugin for Minecrfat Java Version 1.8 - 1.16
 api-version: 1.16
-softdepend:
+depend:
   - LuckPerms
 commands:
   rank:
     description: List all commands
-    permission: rank.use
+    aliases:
+      - rang
