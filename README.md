@@ -4,7 +4,6 @@ AdvancedRANK is a rank Plugin for Minecraft Java Version 1.8 - 1.16
 # Features
 Explanation: /command -> description | permission
 
-  - /rank -> list all Commands | rank.use.selfinfo
   - /rank set <player> <rank (autocomplete)> -> Clears all ranks and sets the new rank of a Player. | rank.use.set
   - /rank remove <player> <rank (autocomplete)> -> Removes an rank from a Player. | rank.use.remove
   - /rank add <player> <rank (autocomplete)> -> Adds an rank to a Player. | rank.use.add
