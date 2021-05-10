@@ -12,7 +12,7 @@ Explanation: /command -> description | permission
   - /rank info <player> -> Info about the Player's Rank | rank.use.info
   - /rank -> Info about your Rank | rank.use.selfinfo
   
-Its powered by the LuckPerms API v5.2 or the VaultAPI and Spigot API v1.8.8
+Its powered by the LuckPerms API v5.2 and Spigot API v1.8 - v1.16
 
 
 ### Installation
