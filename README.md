@@ -18,7 +18,7 @@ Its powered by the LuckPerms API v5.2 and Spigot API v1.8 - v1.16
 
 AdvancedRANK requires [LuckPerms](https://luckperms.net) and a Minecraft Server to run otherwise it won't work.
 
-Download the Latest Version of the Plugin [here](https://github.com/blockiyt/advancedrank/releases) and put it into your plugins folder in your Minecraft Server.
+Download the latest version of the Plugin [here](https://github.com/blockiyt/advancedrank/releases) and put it into your plugins folder in your Minecraft Server.
 
 Restart or reload the Server an you are done!
 
