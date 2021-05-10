@@ -1,5 +1,5 @@
 # AdvancedRANK
-AdvancedRANK is a rank Plugin for Minecraft Java Version 1.8
+AdvancedRANK is a rank Plugin for Minecraft Java Version 1.8 - 1.16
 
 # Features
 Explanation: /command -> description | permission
