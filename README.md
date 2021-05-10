@@ -1,32 +1,32 @@
 # AdvancedRANK
-AdvancedRANK is a /rank Plugin for Minecraft Java Version 1.8
+AdvancedRANK is a rank Plugin for Minecraft Java Version 1.8
 
 # Features
+Explanation: /command -> description | permission
 
-  - /rank -> list all Commands
-  - /rank set <player> <rank (it's autocomplete)> -> Clears all ranks and sets the new rank of a player.
-  - /rank remove <player> <rank (it's autocomplete)> -> Removes an rank from a Player.
-  - /rank add <player> <rank (it's autocomplete)> -> Adds an rank to a Player.
-  - /rank -> Info about your Rank
-  - /rank help -> Help Page of Plugin
-  - /rank info <player> -> Info about their Ranks
+  - /rank -> list all Commands | 
+  - /rank set <player> <rank (autocomplete)> -> Clears all ranks and sets the new rank of a Player. | rank.use.set
+  - /rank remove <player> <rank (autocomplete)> -> Removes an rank from a Player. | rank.use.remove
+  - /rank add <player> <rank (autocomplete)> -> Adds an rank to a Player. | rank.use.add
+  - /rank help -> Help page of Plugin | rank.use.help
+  - /rank info <player> -> Info about the Player's Rank | rank.use.info
+  - /rank -> Info about your Rank | rank.use.selfinfo
   
 Its powered by the LuckPerms API v5.2 or the VaultAPI and Spigot API v1.8.8
 
 
 ### Installation
 
-AdvancedRANK requires [LuckPerms](https://luckperms.net) or [Vault](https://www.spigotmc.org/resources/vault.34315/) & [Spigot](https://www.spigotmc.org/)  with a Minecraft Server to run otherwise it won't work.
+AdvancedRANK requires [LuckPerms](https://luckperms.net) and a Minecraft Server to run otherwise it won't work.
 
-Download the Latest Version of the Plugin [here](https://github.com/blockiyt/advancedrank/releases) and put it into your Plugins folder in your Minecraft Server.
+Download the Latest Version of the Plugin [here](https://github.com/blockiyt/advancedrank/releases) and put it into your plugins folder in your Minecraft Server.
 
-Restart or Reload the Server an you are done!
+Restart or reload the Server an you are done!
 
 ### Todos
 
  - config support for messages
  - time left for rank in info command
- - add single permissions
  - add bungeecord support
 
 License
