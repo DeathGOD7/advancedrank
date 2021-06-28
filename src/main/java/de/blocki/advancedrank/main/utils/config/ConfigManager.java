@@ -9,7 +9,7 @@ import java.util.List;
 
 public class ConfigManager {
 
-    private static File file = new File(Main.plugin.getDataFolder(), "config.yml");
+    private static File file = new File(Main.getPlugin().getDataFolder(), "config.yml");
     private static YamlConfiguration yamlConfiguration = YamlConfiguration.loadConfiguration(file);
 
 
