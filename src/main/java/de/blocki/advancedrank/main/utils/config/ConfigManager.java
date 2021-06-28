@@ -1,4 +1,4 @@
-package de.blocki.advancedrank.main.utils;
+package de.blocki.advancedrank.main.utils.config;
 
 import de.blocki.advancedrank.main.Main;
 import org.bukkit.configuration.file.YamlConfiguration;

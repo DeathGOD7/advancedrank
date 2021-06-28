@@ -1,7 +1,7 @@
 package de.blocki.advancedrank.main;
 
 import de.blocki.advancedrank.luckperms.commands.RankCommand;
-import de.blocki.advancedrank.main.utils.ConfigManager;
+import de.blocki.advancedrank.main.utils.config.ConfigManager;
 import net.luckperms.api.LuckPerms;
 import net.luckperms.api.LuckPermsProvider;
 import org.bukkit.plugin.Plugin;
