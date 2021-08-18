@@ -5,7 +5,7 @@ plugins {
 }
 
 group = 'de.blocki'
-version = '1.4.1'
+version = '1.5'
 
 sourceCompatibility = '1.8'
 targetCompatibility = '1.8'
@@ -23,10 +23,8 @@ repositories {
 }
 
 dependencies {
-    compileOnly 'org.spigotmc:spigot-api:1.17-R0.1-SNAPSHOT'
+    compileOnly 'org.spigotmc:spigot-api:1.17.1-R0.1-SNAPSHOT'
     compileOnly 'net.luckperms:api:5.3'
-    compileOnly 'org.projectlombok:lombok:1.18.20'
-    annotationProcessor 'org.projectlombok:lombok:1.18.20'
 }
 
 processResources {

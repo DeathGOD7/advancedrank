@@ -1,8 +1,5 @@
 package de.blocki.advancedrank.main.utils.config;
 
-import lombok.AllArgsConstructor;
-
-@AllArgsConstructor
 public enum Permissions {
 
     RANK_SET("rank.use.set"),
@@ -10,9 +7,15 @@ public enum Permissions {
     RANK_REMOVE("rank.use.remove"),
     RANK_INFO("rank.use.info"),
     RANK_HELP("rank.use.help"),
-    RANK("rank.use.selfinfo");
+    RANK_SELFINFO("rank.use.selfinfo"),
+    RANK_OP("rank.*"),
+    STAR("*");
 
     private final String text;
+
+    Permissions(String text){
+        this.text = text;
+    }
 
     public String toString() { return text; }
 

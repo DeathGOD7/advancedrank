@@ -1,6 +1,6 @@
 package de.blocki.advancedrank.main;
 
-import de.blocki.advancedrank.luckperms.commands.RankCommand;
+import de.blocki.advancedrank.commands.RankCommand;
 import de.blocki.advancedrank.main.utils.config.ConfigManager;
 import net.luckperms.api.LuckPerms;
 import net.luckperms.api.LuckPermsProvider;
@@ -12,11 +12,10 @@ import java.util.logging.Logger;
 
 public final class Main extends JavaPlugin {
 
-    public static String prefix;
     private static Plugin plugin;
-    public static LuckPerms lpApi;
-    public static boolean isLuckPerms;
     private static Logger logger;
+    private static String messagePrefix;
+    public static LuckPerms lpApi;
 
     @Override
     public void onEnable() {
@@ -25,8 +24,7 @@ public final class Main extends JavaPlugin {
         setDefaultConfig();
 
         if (getServer().getPluginManager().getPlugin("LuckPerms") != null) {
-            logger.log(Level.INFO, "[AdvancedRank] Found the plugin LuckPerms");
-            isLuckPerms = true;
+            logger.log(Level.INFO, "[AdvancedRank] Found the Plugin LuckPerms!\nActivating...");
             lpApi = LuckPermsProvider.get();
             RankCommand cmd = new RankCommand(this, lpApi);
             getCommand("rank").setExecutor(cmd);
@@ -47,8 +45,11 @@ public final class Main extends JavaPlugin {
     }
 
     private void setDefaultConfig(){
-        ConfigManager.setDef("Message.Prefix", "§7[§6Rank§7]");
-        prefix = ConfigManager.getString("Message.Prefix") + " ";
+        //Config
+        ConfigManager.setDef("messages.prefix", "§7[§6Rank§7]");
+        messagePrefix = ConfigManager.getString("messages.prefix") + " ";
+
+        //Messages
     }
     
     public static Plugin getPlugin(){
@@ -58,5 +59,7 @@ public final class Main extends JavaPlugin {
     public static Logger getPLuginLogger(){
         return logger;
     }
+
+    public static String getPrefix(){ return messagePrefix; }
 
 }
