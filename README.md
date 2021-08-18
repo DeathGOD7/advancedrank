@@ -1,17 +1,17 @@
 # AdvancedRANK
-AdvancedRANK is a rank Plugin for Minecraft Java Version 1.8 - 1.18
+AdvancedRANK is a rank Plugin for Minecraft Java Version 1.8 - 1.17.1.
 
 # Features
 Explanation: /command -> description | permission
 
-  - /rank set <player> <rank (autocomplete)> -> Clears all ranks and sets the new rank of a Player. | rank.use.set
-  - /rank remove <player> <rank (autocomplete)> -> Removes an rank from a Player. | rank.use.remove
-  - /rank add <player> <rank (autocomplete)> -> Adds an rank to a Player. | rank.use.add
-  - /rank help -> Help page of Plugin | rank.use.help
-  - /rank info <player> -> Info about the Player's Rank | rank.use.info
-  - /rank -> Info about your Rank | rank.use.selfinfo
+  - /rank set <player> <rank (autocomplete)> -> Clears all ranks and sets the new rank of a player. | rank.use.set
+  - /rank remove <player> <rank (autocomplete)> -> Removes an rank from a player. | rank.use.remove
+  - /rank add <player> <rank (autocomplete)> -> Adds an rank to a player. | rank.use.add
+  - /rank help -> Help page of plugin | rank.use.help
+  - /rank info <player> -> Info about the player's rank | rank.use.info
+  - /rank -> Info about your rank | rank.use.selfinfo
   
-Its powered by the LuckPerms API v5.2 and Spigot API v1.8 - v1.18
+It's powered by the LuckPerms API v5.3 and Spigot API v1.8 - v1.17.1.
 
 
 ### Installation
