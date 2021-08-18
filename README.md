@@ -1,5 +1,5 @@
 # AdvancedRANK
-AdvancedRANK is a rank Plugin for Minecraft Java Version 1.8 - 1.16
+AdvancedRANK is a rank Plugin for Minecraft Java Version 1.8 - 1.18
 
 # Features
 Explanation: /command -> description | permission
@@ -11,7 +11,7 @@ Explanation: /command -> description | permission
   - /rank info <player> -> Info about the Player's Rank | rank.use.info
   - /rank -> Info about your Rank | rank.use.selfinfo
   
-Its powered by the LuckPerms API v5.2 and Spigot API v1.8 - v1.16
+Its powered by the LuckPerms API v5.2 and Spigot API v1.8 - v1.18
 
 
 ### Installation
